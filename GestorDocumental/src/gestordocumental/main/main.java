@@ -8,7 +8,7 @@ public class main {
         gestionarPropiedad nueva = new gestionarPropiedad();
         nueva.setVisible(true);
         nueva.setLocationRelativeTo(null);
-        nueva.setDefaultCloseOperation(gestionarPropiedad.DO_NOTHING_ON_CLOSE);
+        nueva.setDefaultCloseOperation(gestionarPropiedad.EXIT_ON_CLOSE);
     }
     
 }

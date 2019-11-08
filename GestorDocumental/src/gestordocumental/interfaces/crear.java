@@ -499,6 +499,30 @@ public class crear extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Número de finca, número de plano, Área Registral, Vías de Acceso, Metros de frente, valor fiscal, Cantidad habitaciones y Cantidad de locales deben ser valores númericos", "Error de ingreso", JOptionPane.PLAIN_MESSAGE);
             return;
         }
+        
+        try{
+            Connection nueva = conexion.getConexion();
+            PreparedStatement consulta;
+            consulta = nueva.prepareStatement("select numeroFinca from esquema.propiedad where numeroFinca = "+numFinca);
+            ResultSet respuesta = consulta.executeQuery();
+            ArrayList<String> info = new ArrayList<>();
+
+            while(respuesta.next()){
+                info.add(respuesta.getString(1));
+            }
+            if (info.isEmpty()){
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "El número de finca ingresado ya existe", "Error de ingreso", JOptionPane.PLAIN_MESSAGE);
+                return;
+            }  
+        }catch(SQLException m){
+            JOptionPane.showMessageDialog(null, m);
+            return;
+        }
+        
+        
+        
         String[] arr = listaAbonados.split(",");
         int i = 0;
         while (i < arr.length){
